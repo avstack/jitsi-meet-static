@@ -57,7 +57,7 @@ After running these commands, you have a compiled static Jitsi Meet frontend in 
   ```js
   function handler(event) {
     var request = event.request;
-    if (request.uri.match(/^\/[A-Za-z0-9\/_-]+$/)) {
+    if (request.uri.match(/^\/[A-Za-z0-9\/_-]*$/)) {
       request.uri = "/index.html";
     }
     return request;
