@@ -68,9 +68,9 @@ for file in glob.glob("*.html", root_dir=args.input) + glob.glob("static/*.html"
   with open(os.path.join(args.input, file)) as in_f:
     content = in_f.read()
     if args.config_url is not None:
-      content = content.replace('<script><!--#include virtual="/config.js" --></script><!-- adapt to your needs, i.e. set hosts and bosh path -->', f'<script src="{args.config_url}"></script>')
+      content = re.sub(r'<script>\s*<!--\s*#include\s+virtual="/config.js"\s*-->\s*</script>', f'<script src="{args.config_url}"></script>', content)
     if args.interface_config_url is not None:
-      content = content.replace('<script><!--#include virtual="/interface_config.js" --></script>', f'<script src="{args.interface_config_url}"></script>')
-    content = re.sub(r'<!--#include\svirtual="([^"]+)"\s-->', lambda match: open(os.path.join(args.input, match[1].lstrip("/"))).read(), content)
+      content = re.sub(r'<script>\s*<!--\s*#include\s+virtual="/interface_config.js"\s*-->\s*</script>', f'<script src="{args.interface_config_url}"></script>', content)
+    content = re.sub(r'<!--\s*#include\s+virtual="([^"]+)"\s*-->', lambda match: open(os.path.join(args.input, match[1].lstrip("/"))).read(), content)
     with open(os.path.join(args.output, file), "w") as out_f:
       out_f.write(content)
