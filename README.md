@@ -52,8 +52,8 @@ After running these commands, you have a compiled static Jitsi Meet frontend in 
 ## Hosting requirements
 
 * HTTPS. Browsers will not allow WebRTC on non-secure origins.
-* Must be able to redirect non-existent paths matching the conference name format to /index.html. For example, using CloudFront Functions:
-  ```
+* Must be able to direct non-existent paths matching the conference name format to /index.html. For example, using CloudFront Functions:
+  ```js
   function handler(event) {
     var request = event.request;
     if (request.uri.match(/^\/[A-Za-z0-9\/_-]+$/)) {
