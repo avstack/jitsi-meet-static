@@ -14,7 +14,14 @@ parser.add_argument('--input', type=str, required=True, help='the path to the ch
 parser.add_argument('--output', type=str, required=True, help='the destination directory for the compiled static site (which should not already exist)')
 parser.add_argument('--config-url', type=str, help='a config.js URL, if it should be loaded dynamically rather than baked in')
 parser.add_argument('--interface-config-url', type=str, help='an interface_config.js URL, if it should be loaded dynamically rather than baked in')
+parser.add_argument('--stack', type=str, help='an AVStack stack name, as a shortcut for setting --config-url and --interface-config-url')
 args = parser.parse_args()
+
+if args.stack is not None:
+  if args.config_url is None:
+    args.config_url = f"https://{args.stack}.onavstack.net/config.js"
+  if args.interface_config_url is None:
+    args.interface_config_url = f"https://{args.stack}.onavstack.net/interface_config.js"
 
 # Remove checksums from Git dependencies in the NPM package lockfile to prevent spurious build errors
 # on non-x86 architectures.
