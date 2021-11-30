@@ -10,7 +10,7 @@ This script should work with any relatively recent Jitsi Meet frontend version, 
 
 ```
 # ./jitsi-meet-static.py --help
-usage: jitsi-meet-static.py [-h] --input INPUT --output OUTPUT [--config-url CONFIG_URL] [--interface-config-url INTERFACE_CONFIG_URL]
+usage: jitsi-meet-static.py [-h] --input INPUT --output OUTPUT [--config-url CONFIG_URL] [--interface-config-url INTERFACE_CONFIG_URL] [--stack STACK]
 
 Compile the Jitsi Meet frontend to a static site
 
@@ -22,6 +22,7 @@ options:
                         a config.js URL, if it should be loaded dynamically rather than baked in
   --interface-config-url INTERFACE_CONFIG_URL
                         an interface_config.js URL, if it should be loaded dynamically rather than baked in
+  --stack STACK         an AVStack stack name, as a shortcut for setting --config-url and --interface-config-url
 ```
 
 ## Requirements
